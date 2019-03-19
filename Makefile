@@ -27,3 +27,6 @@ serve_bg:
 
 clean:
 	rm -rf dist
+.PHONY: test
+test:
+	$(PPSC) --watch test

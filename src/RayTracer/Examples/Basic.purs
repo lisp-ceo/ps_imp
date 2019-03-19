@@ -1,5 +1,19 @@
 module RayTracer.Examples.Basic where
 
+import Prelude
+import Math(pi)
+
+import RayTracer.Canvas(WithCanvas)
+
+import Control.Monad.Except (lift, throwError)
+import Data.Maybe (Maybe(..))
+import Graphics.Canvas (getCanvasElementById
+                       ,getContext2D
+                       ,rect
+                       ,arc
+                       ,setFillStyle
+                       ,fillPath
+                       )
 writeToCanvas :: WithCanvas
 writeToCanvas = do
   maybeCanvas <- lift $ getCanvasElementById "canvas"

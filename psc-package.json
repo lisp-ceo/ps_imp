@@ -10,6 +10,7 @@
     "prelude",
     "psci-support",
     "refs",
+    "spec",
     "transformers",
     "web-html"
   ]

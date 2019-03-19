@@ -1,6 +1,21 @@
 module RayTracer.Canvas where
 
-import Control.Monad.Except (ExceptT)
+import Prelude
+import Math(pi)
+import Control.Monad.Except (ExceptT, lift, throwError, runExceptT)
+import Data.Maybe (Maybe(..))
+import Data.Either (Either(..))
+import Effect (Effect)
+import Graphics.Canvas (getCanvasElementById
+                       ,getContext2D
+                       ,rect
+                       ,arc
+                       ,setFillStyle
+                       ,fillPath
+                       )
+import Web.HTML(window
+               ,Window)
+import Web.HTML.Window(alert)
 
 type WithCanvas = ExceptT String Effect String
 
