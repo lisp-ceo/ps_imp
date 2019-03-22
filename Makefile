@@ -30,3 +30,6 @@ clean:
 .PHONY: test
 test:
 	$(PPSC) --watch test
+.PHONY: repl
+repl:
+	$(PPSC) repl

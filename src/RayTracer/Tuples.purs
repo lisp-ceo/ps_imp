@@ -3,8 +3,8 @@ module RayTracer.Tuples where
 import Prelude
 import Math (sqrt,abs)
 import Data.Maybe (Maybe(..))
-import Data.Array (concat, (!!))
-import Data.Foldable (all)
+import Data.Array ((!!))
+import Data.Foldable (all, foldl)
 
 -- Book represents tuples using w, does not have ADTs
 -- XXX update examples to use ADTs
@@ -69,8 +69,21 @@ etaCompare t1 t2 eta = all (\a -> maybeEqRelative eta (a !! 0) (a !! 1)) (piecew
 -- do not wish to introduce new types just for this
 -- requires use of constructor from 3rd party package
 maybeEqRelative :: Number -> Maybe Number -> Maybe Number -> Boolean
-maybeEqRelative eta (Just m1) (Just m2) = eqRelative eta m1 m2
+maybeEqRelative eta (Just n1) (Just n2) = eqRelative eta n1 n2
 maybeEqRelative eta _ _ = false
+
+-- TODO fmap/apply instead of handling maybes
+maybeMult :: Maybe Number -> Maybe Number -> Number
+-- maybeMult :: Maybe Number -> Maybe Number -> Maybe Number
+-- maybeMult a b = (*) <$> a <*> b
+maybeMult (Just n1) (Just n2) = n1 * n2
+maybeMult _ _ = 0.0
 
 eqRelative :: Number -> Number -> Number -> Boolean
 eqRelative eta a b = abs(a - b) <= eta
+
+dot :: Tuple -> Tuple -> Number
+dot t1 t2 = foldl (+) 0.0 (piecewiseMult t1 t2)
+
+piecewiseMult :: Tuple -> Tuple -> Array Number
+piecewiseMult t1 t2 = map (\a -> maybeMult (a !! 0) (a !! 1)) (piecewise t1 t2)

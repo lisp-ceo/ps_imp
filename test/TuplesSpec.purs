@@ -94,8 +94,16 @@ spec = do
         let v = vector 4.0 0.0 0.0
         let result = vector 1.0 0.0 0.0
         normalize v `shouldEqual` result
-      -- it "normalizing vector(1.0, 2.0, 3.0)" do
-      --   let v = vector 1.0 2.0 3.0
-      --   let normalize v
-      --   let result = etaCompare((vector 1.0 0.0 0.0)
-      --   normalize v `shouldEqual` result
+      it "normalizing vector(1.0, 2.0, 3.0)" do
+        let v = vector 1.0 2.0 3.0
+        let result = etaCompare (normalize v) (vector 0.26726 0.53452 0.80178) 0.01
+        result `shouldEqual` true
+      it "the magnitude of a normalized vector" do
+        let v = vector 1.0 2.0 3.0
+        let norm = normalize v
+        magnitude(norm) `shouldEqual` 1.0
+    describe "dot product" do
+      it "the dot product of two tuples" do
+        let a = vector 1.0 2.0 3.0
+        let b = vector 2.0 3.0 4.0
+        dot a b `shouldEqual` 20.0
