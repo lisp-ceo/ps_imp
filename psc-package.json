@@ -5,7 +5,9 @@
   "depends": [
     "canvas",
     "either",
+    "foldable-traversable",
     "math",
+    "numbers",
     "partial",
     "prelude",
     "psci-support",
