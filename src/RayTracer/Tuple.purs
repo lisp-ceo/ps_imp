@@ -1,4 +1,4 @@
-module RayTracer.Tuples where
+module RayTracer.Tuple where
 
 import Prelude
 import Math (sqrt,abs)
@@ -87,3 +87,10 @@ dot t1 t2 = foldl (+) 0.0 (piecewiseMult t1 t2)
 
 piecewiseMult :: Tuple -> Tuple -> Array Number
 piecewiseMult t1 t2 = map (\a -> maybeMult (a !! 0) (a !! 1)) (piecewise t1 t2)
+
+cross :: Tuple -> Tuple -> Tuple
+cross t1 t2 = vector x' y' z'
+  where
+  x' = (t1.y * t2.z) - (t1.z * t2.y)
+  y' = (t1.z * t2.x) - (t1.x * t2.z)
+  z' = (t1.x * t2.y) - (t1.y * t2.x)

@@ -1,10 +1,10 @@
-module Test.TuplesSpec where
+module Test.TupleSpec where
 
 import Prelude
 import Math (sqrt)
 import Test.Spec (Spec, describe, pending, it)
 import Test.Spec.Assertions (shouldEqual)
-import RayTracer.Tuples
+import RayTracer.Tuple
 
 spec :: Spec Unit
 spec = do
@@ -107,3 +107,9 @@ spec = do
         let a = vector 1.0 2.0 3.0
         let b = vector 2.0 3.0 4.0
         dot a b `shouldEqual` 20.0
+    describe "cross product" do
+      it "the cross product of two vectors" do
+        let a = vector 1.0 2.0 3.0
+        let b = vector 2.0 3.0 4.0
+        cross a b `shouldEqual` vector (-1.0) 2.0 (-1.0)
+        cross b a `shouldEqual` vector 1.0 (-2.0) 1.0

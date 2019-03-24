@@ -33,3 +33,5 @@ test:
 .PHONY: repl
 repl:
 	$(PPSC) repl
+run:
+	$(PPSC) run
